@@ -1,1 +1,2 @@
-<app-auth-form></app-auth-form>
+<app-auth-form *ngIf="!user"></app-auth-form>
+<app-main-app *ngIf="user"></app-main-app>

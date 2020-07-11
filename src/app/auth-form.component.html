@@ -1,6 +1,5 @@
 <main>
   <h2>Login first to get started</h2>
-  <button *ngIf="!user" mat-raised-button color="primary" (click)="loginClick()">Login</button>
-  <button *ngIf="user" mat-raised-button color="primary" (click)="logoutClick()">Logout</button>
+  <button mat-raised-button color="primary" (click)="loginClick()">Login</button>
   <span *ngIf="errMessage">Oops, smth went wrong: {{ errMessage }}</span>
 </main>

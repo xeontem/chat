@@ -1,5 +1,8 @@
-<mat-list role="list">
-  <mat-list-item role="listitem" *ngFor="let room of rooms | async">
-    {{ room.name }}
-  </mat-list-item>
-</mat-list>
+<main>
+  <mat-list role="list">
+    <mat-list-item role="listitem" *ngFor="let room of rooms | async">
+      {{ room.name }}
+    </mat-list-item>
+  </mat-list>
+  <button mat-raised-button color="primary" (click)="logoutClick()">Logout</button>
+</main>

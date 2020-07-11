@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FirestoreService, User } from './firestore.service';
+import { FirestoreService } from './firestore.service';
 import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+
+
 
 @Component({
   selector: 'app-auth-form',
@@ -8,18 +11,14 @@ import { Observable } from 'rxjs';
   styleUrls: ['./auth-form.component.scss']
 })
 export class AuthFormComponent implements OnInit {
-  // TODO: move user to the store
-  user: User;
-
   errMessage: String;
 
-  constructor(public firestore: FirestoreService) { }
+  constructor(
+    private store: Store,
+    public firestore: FirestoreService,
+  ) { }
 
   ngOnInit(): void {
-    this.firestore.onLoginStateChange$.subscribe(user => {
-      this.user = user;
-    });
-
     this.firestore.onLoginErr$.subscribe(err => {
       this.errMessage = err.message;
     });
@@ -28,9 +27,4 @@ export class AuthFormComponent implements OnInit {
   loginClick() {
     this.firestore.login();
   }
-
-  logoutClick() {
-    this.firestore.logout();
-  }
-
 }

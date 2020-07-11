@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { auth } from 'firebase/app';
+import * as All from 'firebase/app';
 import { Observable, Subject } from 'rxjs';
+import { Store } from '@ngrx/store';
 
-export type User = {
-  photoURL: String;
-  displayName: String;
-  email: String;
-};
+import { User } from '../store/type-defs';
+import { setUser } from '../store/actions/actions';
+import { AuthReducer } from '../store/reducers';
 
 type OnLoginStateChange = Subject<User>;
 
@@ -28,10 +27,16 @@ export class FirestoreService {
 
   constructor(
     private auth: AngularFireAuth,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private store: Store
   ) {
-    auth.onAuthStateChanged((user: User) => {
-      this.onLoginStateChange$.next(user);
+    this.auth.onAuthStateChanged((user: User) => {
+      const nextUser = user ? {
+        photoURL: user.photoURL,
+        displayName: user.displayName,
+        email: user.email
+      } : null;
+      this.store.dispatch(setUser({ user: nextUser }));
     });
   }
 
@@ -40,7 +45,7 @@ export class FirestoreService {
   }
 
   login(): void {
-    this.auth.signInWithPopup(new auth.GoogleAuthProvider())
+    this.auth.signInWithPopup(new All.auth.GoogleAuthProvider())
       .then(user => {
         this.onLoginSucc$.next(user);
       })

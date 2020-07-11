@@ -10,11 +10,16 @@ import { Observable } from 'rxjs';
 export class MainAppComponent implements OnInit {
   rooms: Observable<any[]>;
 
-  constructor(firestore: FirestoreService) {
+  constructor(
+    public firestore: FirestoreService,
+  ) {
     this.rooms = firestore.getRooms();
   }
 
   ngOnInit(): void {
   }
 
+  logoutClick() {
+    this.firestore.logout();
+  }
 }
