@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "chat-6edc2": {
+      "hosting": {
+        "my-app": [
+          "chat-6edc2"
+        ]
+      }
+    }
+  }
+}
