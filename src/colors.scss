@@ -1,0 +1,5 @@
+@import '~@angular/material/theming';
+
+$red-pallete: mat-palette($mat-red); // #ff1744;
+
+$error: mat-color($red-pallete);
