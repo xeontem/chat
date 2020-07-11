@@ -1,19 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { FirestoreService } from './firestore.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-main-app',
   templateUrl: './main-app.component.html',
-  styleUrls: ['./main-app.component.scss']
+  styleUrls: ['./main-app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainAppComponent implements OnInit {
-  rooms: Observable<any[]>;
+  rooms: any[];
 
   constructor(
     public firestore: FirestoreService,
+    private ref: ChangeDetectorRef
   ) {
-    this.rooms = firestore.getRooms();
+    firestore.getRooms().subscribe(rooms => {
+      this.rooms = rooms;
+      this.ref.detectChanges();
+    });
   }
 
   ngOnInit(): void {

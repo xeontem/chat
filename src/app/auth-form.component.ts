@@ -1,26 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { FirestoreService } from './firestore.service';
-import { Observable } from 'rxjs';
-import { Store, select } from '@ngrx/store';
-
-
 
 @Component({
   selector: 'app-auth-form',
   templateUrl: './auth-form.component.html',
-  styleUrls: ['./auth-form.component.scss']
+  styleUrls: ['./auth-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AuthFormComponent implements OnInit {
   errMessage: String;
 
   constructor(
-    private store: Store,
     public firestore: FirestoreService,
+    private ref: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
     this.firestore.onLoginErr$.subscribe(err => {
       this.errMessage = err.message;
+      this.ref.detectChanges();
     });
   }
 
