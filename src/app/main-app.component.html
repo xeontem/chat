@@ -1,8 +1,4 @@
 <main>
-  <mat-list role="list">
-    <mat-list-item role="listitem" *ngFor="let room of rooms">
-      {{ room.name }}
-    </mat-list-item>
-  </mat-list>
-  <button mat-raised-button color="primary" (click)="logoutClick()">Logout</button>
+  <app-left-container></app-left-container>
+  <app-right-container></app-right-container>
 </main>

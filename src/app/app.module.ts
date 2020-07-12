@@ -2,10 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-
-import { AppComponent } from './app.component';
-import { AuthFormComponent } from './auth-form.component';
-import { MainAppComponent } from './main-app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
@@ -19,6 +15,20 @@ import * as AllFS from '@angular/fire/firestore';
 
 
 
+import { AppComponent } from './app.component';
+import { AuthFormComponent } from './auth-form.component';
+import { MainAppComponent } from './main-app.component';
+import { LeftContainerComponent } from './left-container.component';
+import { RightContainerComponent } from './right-container.component';
+import { TabsComponent } from './tabs.component';
+import { RoomsComponent } from './rooms.component';
+import { RoomInfoComponent } from './room-info.component';
+import { ChatInfoComponent } from './chat-info.component';
+import { MainChatComponent } from './main-chat.component';
+import { ChatInputComponent } from './chat-input.component';
+
+
+
 import { environment } from '../environments/environment';
 import { authReducer, metaReducers } from '../store/reducers';
 
@@ -26,7 +36,15 @@ import { authReducer, metaReducers } from '../store/reducers';
   declarations: [
     AppComponent,
     AuthFormComponent,
-    MainAppComponent
+    MainAppComponent,
+    LeftContainerComponent,
+    RightContainerComponent,
+    TabsComponent,
+    RoomsComponent,
+    RoomInfoComponent,
+    ChatInfoComponent,
+    MainChatComponent,
+    ChatInputComponent
   ],
   imports: [
     BrowserModule,
