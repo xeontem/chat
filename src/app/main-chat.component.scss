@@ -1,0 +1,8 @@
+:host {
+  display: block;
+  height: calc(100% - 150px);
+
+  .from-current-user {
+    background-color: red;
+  }
+}

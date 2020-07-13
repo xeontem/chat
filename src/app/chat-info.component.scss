@@ -1,0 +1,9 @@
+:host {
+  position: relative;
+  display: block;
+  height: 50px;
+
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+}

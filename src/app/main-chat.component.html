@@ -1,1 +1,9 @@
-<p>main-chat works!</p>
+<mat-nav-list role="list">
+  <mat-list-item
+    role="listitem"
+    *ngFor="let message of chatMessages"
+    [ngClass]="{ 'from-current-user': message.author === curUserMail }"
+  >
+    {{ message.message }}
+  </mat-list-item>
+</mat-nav-list>

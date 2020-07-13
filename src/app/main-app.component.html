@@ -1,4 +1,13 @@
-<main>
-  <app-left-container></app-left-container>
-  <app-right-container></app-right-container>
-</main>
+<mat-sidenav-container>
+  <mat-sidenav
+    mode="side"
+    [(opened)]="isOpened"
+    (opened)="events.push('open!')"
+    (closed)="events.push('close!')"
+  >
+    <app-left-container></app-left-container>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-right-container></app-right-container>
+  </mat-sidenav-content>
+</mat-sidenav-container>

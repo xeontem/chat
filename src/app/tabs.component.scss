@@ -1,0 +1,20 @@
+:host {
+  display: block;
+  height: calc(100% - 100px);
+
+  ::ng-deep {
+    .mat-tab-label {
+      height: 64px;
+    }
+
+    .mat-tab-body-wrapper,
+    .mat-tab-group {
+      height: 100%;
+    }
+
+    mat-nav-list {
+      padding-top: 0;
+    }
+
+  }
+}

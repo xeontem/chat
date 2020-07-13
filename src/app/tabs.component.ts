@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-tabs',
   templateUrl: './tabs.component.html',
-  styleUrls: ['./tabs.component.scss']
+  styleUrls: ['./tabs.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private ref: ChangeDetectorRef
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  tabsClickHandler() {
+    this.ref.markForCheck();
   }
 
 }

@@ -1,1 +1,16 @@
-<p>chat-input works!</p>
+<mat-divider></mat-divider>
+<form class="example-form" (submit)="onSubmitHandler($event)">
+  <mat-form-field class="example-full-width">
+    <input
+      matInput
+      placeholder="Enter text here..."
+      value=""
+      (focus)="detectChanges()"
+      (blur)="detectChanges()"
+      (input)="detectChanges()"
+    >
+  </mat-form-field>
+  <button mat-icon-button type="submit" color="primary" aria-label="Example icon button with a home icon">
+    <mat-icon>send</mat-icon>
+  </button>
+</form>

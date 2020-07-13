@@ -1,1 +1,8 @@
-<p>tabs works!</p>
+<mat-tab-group mat-stretch-tabs (click)="tabsClickHandler()">
+  <mat-tab label="Directs">
+    <app-chats></app-chats>
+  </mat-tab>
+  <mat-tab label="Rooms">
+    <app-rooms></app-rooms>
+  </mat-tab>
+</mat-tab-group>

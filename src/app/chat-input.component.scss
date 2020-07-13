@@ -1,0 +1,19 @@
+:host {
+  display: block;
+  height: 100px;
+
+  form {
+    position: relative;
+    padding: 10px 20px;
+
+    mat-form-field {
+      width: 100%;
+    }
+
+    button {
+      position: absolute;
+      right: 6px;
+      bottom: -15px;
+    }
+  }
+}

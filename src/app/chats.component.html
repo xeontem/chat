@@ -1,0 +1,31 @@
+<form class="example-form" (submit)="onSubmitHandler($event)">
+  <mat-form-field class="example-full-width">
+    <input
+      matInput
+      placeholder="user email..."
+      value=""
+      type="email"
+      name="email"
+      (focus)="detectChanges()"
+      (blur)="detectChanges()"
+      (input)="detectChanges()"
+    >
+    <span class="error-field" *ngIf="errorMessage">{{ errorMessage }}</span>
+  </mat-form-field>
+  <button mat-icon-button type="submit" color="primary" aria-label="Example icon button with a home icon">
+    <mat-icon>adds</mat-icon>
+  </button>
+</form>
+
+<mat-nav-list role="list" *ngIf="chats.length">
+  <mat-list-item
+    role="listitem"
+    *ngFor="let chat of chats; let idx = index"
+    [ngClass]="{ 'mat-list-item--selected': idx === indexOfSelectedChat }"
+    (click)="setSelectedChat(chat, idx)"
+  >
+    {{ chat.name }}
+  </mat-list-item>
+</mat-nav-list>
+
+

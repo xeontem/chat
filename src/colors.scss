@@ -1,5 +1,7 @@
 @import '~@angular/material/theming';
 
+$blue-grey-pallete: mat-palette($mat-blue-grey); // #ff1744;
 $red-pallete: mat-palette($mat-red); // #ff1744;
 
+$main-background: mat-color($blue-grey-pallete, A400);
 $error: mat-color($red-pallete);
