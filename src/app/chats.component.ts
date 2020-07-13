@@ -43,6 +43,11 @@ export class ChatsComponent implements OnInit {
 
     this.firestore.addChatWithUser(email).subscribe(res => {
       this.errorMessage = (res.errorInfo && res.errorInfo.message) || '';
+
+      if (!this.errorMessage) {
+        e.target.elements[0].value = '';
+      }
+
       this.ref.detectChanges();
     });
   }

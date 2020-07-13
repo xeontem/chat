@@ -13,7 +13,7 @@ import { selectSelectedChat } from '../store/selectors';
 })
 export class ChatInfoComponent implements OnInit {
   userInput: String;
-  selectedChat: any;
+  chatName: String;
 
   constructor(
     public firestore: FirestoreService,
@@ -24,7 +24,7 @@ export class ChatInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.pipe(select(selectSelectedChat)).subscribe(selectedChat => {
-      this.selectedChat = selectedChat;
+      this.chatName = selectedChat ? 'Chat with: ' + selectedChat.name.split('@')[0] : '';
       this.ref.markForCheck();
     });
   }

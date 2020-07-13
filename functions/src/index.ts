@@ -5,12 +5,28 @@ admin.initializeApp();
 const firestore = admin.firestore();
 
 export const addChatWithUser = functions.https.onCall((data, context) => {
-  return admin.auth().getUserByEmail(data.email)
+  return Promise.all([
+    admin.auth().getUser(context.auth.uid),
+    admin.auth().getUserByEmail(data.email)
+  ])
+    .then(([curUser, friendUser]) => {
+      return [
+        { email: friendUser.email, uid: curUser.uid },
+        { email: curUser.email, uid: friendUser.uid }
+      ];
+    })
+    .then(users => {
+      return Promise.all(users.map(userData => {
+        return firestore.collection('usersData').doc(userData.uid).collection('chats').doc(userData.email).set({});
+      }));
+    })
     .then(() => {
-      return firestore.collection('usersData').doc(context.auth.uid).collection('chats').doc(data.email).set({});
+      const msg = 'successfully added chat btw users!';
+      console.log(msg);
+      return msg;
     })
     .catch(error => {
-      console.log('Error fetching user data:', error);
+      console.log(error);
       return error;
     });
 });

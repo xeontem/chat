@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 
-import { selectSelectedChat } from '../store/selectors';
+import { selectSelectedChat, selectUser } from '../store/selectors';
 
 @Component({
   selector: 'app-main-chat',
@@ -17,11 +17,16 @@ export class MainChatComponent implements OnInit {
     public store: Store,
     private ref: ChangeDetectorRef,
   ) {
-    this.store.pipe(select((state: any) => state.userChatsReducer.selectedChat)).subscribe(selectedChat => {
+    this.store.pipe(select(selectSelectedChat)).subscribe(selectedChat => {
       this.chatMessages = selectedChat
         ? [...selectedChat.messages].sort((a, b) => a.date > b.date ? 1 : -1)
         : [];
       this.ref.markForCheck();
+    });
+
+    this.store.pipe(select(selectUser)).subscribe(user => {
+      this.curUserMail = user ? user.email : '';
+      this.ref.detectChanges();
     });
   }
 
